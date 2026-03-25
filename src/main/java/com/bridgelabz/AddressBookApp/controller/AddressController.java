@@ -5,7 +5,7 @@ import com.bridgelabz.AddressBookApp.service.AddressService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -24,8 +24,7 @@ public class AddressController {
     }
 
     @PostMapping("/create")
-    public AddressDTO create(@RequestBody AddressDTO dto) {
-        log.info("Creating contact: {}", dto);
+    public AddressDTO create(@Valid @RequestBody AddressDTO dto) {
         return service.create(dto);
     }
 
@@ -36,8 +35,7 @@ public class AddressController {
     }
 
     @PutMapping("/update/{id}")
-    public AddressDTO update(@PathVariable int id, @RequestBody AddressDTO dto) {
-        log.info("Updating contact with id: {}", id);
+    public AddressDTO update(@PathVariable int id, @Valid @RequestBody AddressDTO dto) {
         return service.update(id, dto);
     }
 
